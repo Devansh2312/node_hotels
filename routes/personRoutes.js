@@ -97,7 +97,7 @@ router.delete('/:id', async(req, res)=>{
   }
   catch(err){
     console.log(err);
-    res.status(404).json({error:'Internal Server Error'})
+    res.status(400).json({error:'Internal Server Error'})
   }
   
 });
@@ -105,4 +105,4 @@ router.delete('/:id', async(req, res)=>{
 
 module.exports = router;
 
-// comment
+// comment changed
