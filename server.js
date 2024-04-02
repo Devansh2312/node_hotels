@@ -10,7 +10,16 @@ app.use(bodyParser.json()); // to support JSON
 const Person = require( './models/person' );
 const MenuItem =require( "./models/menu" ) ; 
 
-app.get('/',(req,res)=>{
+//Middleware Function
+
+const logRequest = (req, res, next) =>{
+    console.log(`[${new Date().toLocaleString()} Request made to: ${req.originalUrl}]`);
+    next(); // Move on to the next Phase;
+}
+
+
+app.use(logRequest);
+app.get('/', (req,res)=>{
     res.send("Welcome to Marriot Hotel, Jaipur");
 });
 
@@ -22,6 +31,8 @@ const menuRoutes = require('./routes/menuRoutes');
 
 app.use( '/person', personRoutes);
 app.use( '/menu', menuRoutes) ;
+
+
 
 
 app.listen(PORT,()=>{
